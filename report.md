@@ -1,7 +1,8 @@
-# Weekly report
+# Отчёт
 
-**Latest improvements:**
-- read DR papers from NIPS and ICML conferences (basically, 2016)
+**21.03** 
+Реализовал и слегка протестировал алгоритм из [статьи](http://jmlr.org/proceedings/papers/v48/lib16.pdf)
+Смущает, что с самой первой итерации градиентного спуска на тесте достигается лучшее качество для всех рангов аппроксимации. Ещё смущает, что ошибка на тренировочной выборке сильно возрастает от процедуры.
 
-**Current tasks:**
-- preparing speech on recent advances in DR
+**2do**
+Подобрать параметры
