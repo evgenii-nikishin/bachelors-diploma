@@ -1,3 +1,45 @@
+from __future__ import print_function, division
+import math
+import numpy as np
+import zipfile
+import pandas as pd
+
+
+def read_data(archive, filename):
+    data = archive.open('ml-1m/' + filename + '.dat').readlines()
+    return np.array(map(lambda x: x[:-1].split('::'), data))
+
+
+def preprocess_ratings(ratings_raw):
+    ratings = dict()
+    for user in np.unique(ratings_raw[:, 0]):
+        ratings[user] = ratings_raw[np.where(ratings_raw[:, 0] == user)[0]][:, 1:]
+    return ratings
+
+
+def preprocess_users(users_raw):
+    users = dict()
+    
+    users_int = users_raw[:, :-1].copy()
+    users_int[:, 1] = (users_raw[:, 1] == 'M').astype(int)
+    users_int = users_int.astype(int)
+    
+    for user in users_int:
+        users[user[0]] = user[1:]
+    
+    return users
+
+
+def preprocess_movies(movies_raw):
+    movies = dict()
+    
+    for movie in movies_raw:
+        movies[int(movie[0])] = movie[1:]
+        movies[int(movie[0])].extend([0, 0]) # summary ratings, summary views
+        
+    return movies
+
+
 def load_data():
     archive = zipfile.ZipFile('ml-1m.zip', 'r')
     
