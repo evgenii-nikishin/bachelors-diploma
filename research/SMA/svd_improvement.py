@@ -210,8 +210,8 @@ def fit_ae(R, hard_pred_indices, n_hidden_1, method='user_wise'):
         batch_count = int(math.ceil(R.shape[0] / batch_size))
     elif method == 'ui_concat':
         n_input = sum(R.shape)
-        learning_rate = 0.003
-        n_epoch = 20
+        learning_rate = 0.001
+        n_epoch = 5
         batch_size = 256
         nnz_indices = zip(*np.where(R))
         np.random.shuffle(nnz_indices)
