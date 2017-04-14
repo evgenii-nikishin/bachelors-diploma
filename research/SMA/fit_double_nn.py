@@ -162,7 +162,4 @@ if __name__ == "__main__":
     R_pred = predict(R, test_mask, sess, placeholders, ratings_layer_last)
     print('Test error: {:.4f}'.format(rmse(R, R_pred, mask=test_mask)))
 
-    U, V = svd_2_factors(R * train_mask, rank)
-    print('Naive SVD approximation error: {:.4f}'.format(rmse(R, np.dot(U, V.T), mask=test_mask)))
-
     sess.close()
